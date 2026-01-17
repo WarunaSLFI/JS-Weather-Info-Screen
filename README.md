@@ -7,7 +7,7 @@ Search any city with **auto-suggestions**, or use **Locate** to fetch weather fo
 ![Weather Info Screen Preview](screenshot.png)
 
 ## 🚀 Live Demo
-👉 https://github.com/WarunaSLFI/JS-Weather-Info-Screen
+👉 https://warunaslfi.github.io/JS-Weather-Info-Screen
 
 ## 🧰 Built With
 - HTML
