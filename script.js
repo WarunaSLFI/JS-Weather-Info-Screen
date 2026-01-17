@@ -3,6 +3,7 @@ const WEATHER_API_BASE = "https://api.weatherapi.com/v1";
 const DEFAULT_CITY = "Tampere";
 const REFRESH_MS = 5 * 60 * 1000;
 
+
 const elements = {
   form: document.getElementById("search-form"),
   input: document.getElementById("city-input"),
