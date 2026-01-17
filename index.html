@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Info Screen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-clear">
+  <div class="app">
+    <header class="top-bar">
+      <div class="brand">
+        <img src="images/location.svg" alt="" class="brand-icon" />
+        <div>
+          <p class="eyebrow">Live Weather</p>
+          <h1>Info Screen</h1>
+        </div>
+      </div>
+      <div class="top-links">
+        <a href="https://github.com/WarunaSLFI" class="link-icon" target="_blank" rel="noopener">
+          <img src="images/github.svg" alt="" /> GitHub Profile
+        </a>
+        <a href="https://github.com/your-username/weather-info-screen" class="link-icon" target="_blank" rel="noopener">
+          <img src="images/github.svg" alt="" /> Project Repo
+        </a>
+      </div>
+    </header>
+
+    <header class="controls">
+        <form id="search-form" class="search" autocomplete="off">
+          <label class="sr-only" for="city-input">City name</label>
+          <input id="city-input" name="city" type="text" placeholder="Search city (e.g. Tampere)" required />
+          <button type="button" id="geo-btn" class="btn ghost" title="Use my location">
+            <img src="images/location.svg" alt="" /> Locate
+          </button>
+          <div id="suggestions" class="suggestions" role="listbox" aria-label="Location suggestions"></div>
+        </form>
+        <div class="toolbar">
+          <button type="button" id="refresh-btn" class="icon-btn" title="Refresh">
+            <img src="images/reset.svg" alt="Refresh" />
+          </button>
+          <div class="last-updated" id="last-updated">Last updated: --:--</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card current" aria-live="polite">
+        <div class="current-header">
+          <div>
+            <p class="eyebrow">Now</p>
+            <h2 id="location-name">Awaiting city</h2>
+            <div class="meta-row">
+              <div class="meta-item">
+                <img src="images/calendar.svg" alt="" />
+                <span id="current-date">—</span>
+              </div>
+              <div class="meta-item">
+                <img src="images/clock.svg" alt="" />
+                <span id="current-time">—:—</span>
+              </div>
+            </div>
+          </div>
+          <div class="icon-temp">
+            <img id="current-icon" src="images/clear-day.svg" alt="Weather icon" />
+            <div class="temp-stack">
+              <p class="temp" id="current-temp">--°</p>
+              <p class="feels" id="feels-like">Feels like --°</p>
+              <p class="desc" id="weather-desc">Enter a city to begin</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="metrics">
+          <div class="metric">
+            <img src="images/feels-like.svg" alt="" />
+            <div>
+              <p class="label">Feels like</p>
+              <p class="value" id="metric-feels">--°</p>
+            </div>
+          </div>
+          <div class="metric">
+            <img src="images/wind.svg" alt="" />
+            <div>
+              <p class="label">Wind</p>
+              <p class="value" id="metric-wind">-- m/s</p>
+            </div>
+          </div>
+          <div class="metric">
+            <img src="images/humidity.svg" alt="" />
+            <div>
+              <p class="label">Humidity</p>
+              <p class="value" id="metric-humidity">--%</p>
+            </div>
+          </div>
+          <div class="metric">
+            <img src="images/pressure.svg" alt="" />
+            <div>
+              <p class="label">Pressure</p>
+              <p class="value" id="metric-pressure">-- hPa</p>
+            </div>
+          </div>
+          <div class="metric">
+            <img src="images/sunrise.svg" alt="" />
+            <div>
+              <p class="label">Sunrise</p>
+              <p class="value" id="metric-sunrise">--:--</p>
+            </div>
+          </div>
+          <div class="metric">
+            <img src="images/sunset.svg" alt="" />
+            <div>
+              <p class="label">Sunset</p>
+              <p class="value" id="metric-sunset">--:--</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card forecast">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Upcoming</p>
+            <h3>Next 10 hours</h3>
+          </div>
+          <div class="unit-toggle" role="group" aria-label="Temperature unit">
+            <button class="toggle-btn active" data-unit="metric">°C</button>
+            <button class="toggle-btn" data-unit="imperial">°F</button>
+          </div>
+        </div>
+        <div class="forecast-row" id="forecast-row">
+          <div class="empty-state">
+            <img src="images/clock.svg" alt="" />
+            <p>Forecast will appear here after your first search.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="overlay loading" id="loading" hidden>
+    <div class="overlay-card">
+      <img src="images/loading.svg" alt="Loading" class="spin" />
+      <p id="loading-text">Loading latest weather...</p>
+    </div>
+  </div>
+
+  <div class="overlay error" id="error" hidden role="alert">
+    <div class="overlay-card">
+      <img src="images/error.svg" alt="Error" />
+      <p id="error-message">Something went wrong. Try again.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
