@@ -1,4 +1,4 @@
-const API_KEY = "11e6b9f9ffaa4d229b5110309261701";
+﻿const API_KEY = "11e6b9f9ffaa4d229b5110309261701";
 const WEATHER_API_BASE = "https://api.weatherapi.com/v1";
 const DEFAULT_CITY = "Tampere";
 const REFRESH_MS = 5 * 60 * 1000;
@@ -342,7 +342,7 @@ function renderCurrentWeather(data, location, astro) {
   elements.locationName.textContent = [location?.name, location?.country].filter(Boolean).join(", ");
   elements.currentTemp.textContent = `${Math.round(temp ?? 0)}${unitSymbol}`;
   elements.feelsLike.textContent = `Feels like ${Math.round(feels ?? 0)}${unitSymbol}`;
-  elements.weatherDesc.textContent = capitalize(data.condition?.text || "—");
+  elements.weatherDesc.textContent = capitalize(data.condition?.text || "--");
   elements.currentIcon.src = `images/${iconName}.svg`;
   elements.currentIcon.alt = data.condition?.text || "Weather icon";
 
