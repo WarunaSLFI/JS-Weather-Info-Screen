@@ -23,16 +23,24 @@
         <a href="https://github.com/WarunaSLFI" class="link-icon" target="_blank" rel="noopener">
           <img src="images/github.svg" alt="" /> GitHub Profile
         </a>
-        <a href="https://github.com/your-username/weather-info-screen" class="link-icon" target="_blank" rel="noopener">
+        <a href="https://github.com/WarunaSLFI/JS-Weather-Info-Screen" class="link-icon" target="_blank" rel="noopener">
           <img src="images/github.svg" alt="" /> Project Repo
         </a>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false" title="Toggle theme">
+          <img id="theme-icon" src="images/moon.svg" alt="Dark mode" />
+        </button>
       </div>
     </header>
 
     <header class="controls">
         <form id="search-form" class="search" autocomplete="off">
           <label class="sr-only" for="city-input">City name</label>
-          <input id="city-input" name="city" type="text" placeholder="Search city (e.g. Tampere)" required />
+          <div class="input-wrap">
+            <input id="city-input" name="city" type="text" placeholder="Search city (e.g. Tampere)" required />
+            <button type="button" id="clear-btn" class="clear-btn" aria-label="Clear search">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
           <button type="button" id="geo-btn" class="btn ghost" title="Use my location">
             <img src="images/location.svg" alt="" /> Locate
           </button>

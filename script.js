@@ -8,6 +8,7 @@ const elements = {
   input: document.getElementById("city-input"),
   geoBtn: document.getElementById("geo-btn"),
   refreshBtn: document.getElementById("refresh-btn"),
+  clearBtn: document.getElementById("clear-btn"),
   lastUpdated: document.getElementById("last-updated"),
   currentDate: document.getElementById("current-date"),
   currentTime: document.getElementById("current-time"),
@@ -29,6 +30,8 @@ const elements = {
   errorMessage: document.getElementById("error-message"),
   unitToggle: document.querySelector(".unit-toggle"),
   suggestions: document.getElementById("suggestions"),
+  themeToggle: document.getElementById("theme-toggle"),
+  themeIcon: document.getElementById("theme-icon"),
 };
 
 const state = {
@@ -42,6 +45,7 @@ const state = {
 
 document.addEventListener("DOMContentLoaded", () => {
   wireEvents();
+  applyStoredTheme();
 
   if (!API_KEY || API_KEY.includes("PASTE")) {
     showError("Add your WeatherAPI key at the top of script.js.");
@@ -108,7 +112,14 @@ function wireEvents() {
     }
   });
 
+  elements.themeToggle.addEventListener("click", toggleTheme);
+
   elements.input.addEventListener("input", handleSuggestInput);
+  elements.clearBtn.addEventListener("click", () => {
+    elements.input.value = "";
+    hideSuggestions();
+    elements.input.focus();
+  });
   elements.input.addEventListener("focus", () => {
     if (elements.suggestions.childElementCount) {
       elements.suggestions.classList.add("visible");
@@ -120,6 +131,33 @@ function wireEvents() {
       hideSuggestions();
     }
   });
+}
+
+function applyStoredTheme() {
+  const saved = localStorage.getItem("theme");
+  if (saved === "dark") {
+    document.body.classList.remove("theme-light");
+    elements.themeToggle.setAttribute("aria-pressed", "false");
+    setThemeIcon(false);
+    return;
+  }
+  document.body.classList.add("theme-light");
+  elements.themeToggle.setAttribute("aria-pressed", "true");
+  setThemeIcon(true);
+}
+
+function toggleTheme() {
+  document.body.classList.toggle("theme-light");
+  const isLight = document.body.classList.contains("theme-light");
+  elements.themeToggle.setAttribute("aria-pressed", isLight ? "true" : "false");
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+  setThemeIcon(isLight);
+}
+
+function setThemeIcon(isLight) {
+  if (!elements.themeIcon) return;
+  elements.themeIcon.src = isLight ? "images/sun.svg" : "images/moon.svg";
+  elements.themeIcon.alt = isLight ? "Light mode" : "Dark mode";
 }
 
 function updateUnitToggle() {
